@@ -14,16 +14,26 @@ public class Main
 
     public static void main(String[] args)
     {
-        PROMPTER.prompt(IOPrompter.PromptStage.FILE);
+        // prompt for file location
+        PROMPTER.prompt(IOPrompter.ProgramStage.FILE);
         File file = new File(INPUT.nextLine());
 
+        // log output
+        PROMPTER.prompt(IOPrompter.ProgramStage.OUTPUT);
+        LOGGER.log(getFormattedLines(file));
+    }
+
+    /**
+     * Takes a file and returns it as a list of formatted lines.
+     * @param file file location
+     * @return list of formatted lines
+     */
+    private static ArrayList<String> getFormattedLines(File file)
+    {
         ArrayList<String> lines = new ArrayList<>(READER.getLines(file));
         ArrayList<String> formattedLines = new ArrayList<>();
 
-        lines.forEach(line ->
-                formattedLines.add(CONVERTER.convertLine(line)));
-
-        PROMPTER.prompt(IOPrompter.PromptStage.OUTPUT);
-        LOGGER.log(formattedLines);
+        lines.forEach(line -> formattedLines.add(CONVERTER.convertLine(line)));
+        return formattedLines;
     }
 }

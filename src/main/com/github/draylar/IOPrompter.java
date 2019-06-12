@@ -2,7 +2,11 @@ package main.com.github.draylar;
 
 class IOPrompter
 {
-    void prompt(PromptStage stage)
+    /**
+     * Prints a prompt message based on the current stage of the program.
+     * @param stage current stage of the program
+     */
+    void prompt(ProgramStage stage)
     {
         switch(stage)
         {
@@ -15,7 +19,7 @@ class IOPrompter
         }
     }
 
-    public enum PromptStage
+    public enum ProgramStage
     {
         FILE,
         OUTPUT
