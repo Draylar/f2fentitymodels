@@ -13,11 +13,17 @@ public class Main
     private static final IOPrompter PROMPTER = new IOPrompter();
 
     public static void main(String[] args)
-    {
-        // prompt for file location
-        PROMPTER.prompt(IOPrompter.ProgramStage.FILE);
-        File file = new File(INPUT.nextLine());
-
+    {   
+        
+        //pass file path as argument to .jar
+        File file;
+        if (args.length > 0) {
+            file = new File(args[0]);
+        } else {
+            // prompt for file location
+            PROMPTER.prompt(IOPrompter.ProgramStage.FILE);
+            file = new File(INPUT.nextLine());
+        }
         // log output
         PROMPTER.prompt(IOPrompter.ProgramStage.OUTPUT);
         LOGGER.log(getFormattedLines(file));
