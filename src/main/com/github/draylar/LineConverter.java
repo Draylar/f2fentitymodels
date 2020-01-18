@@ -74,17 +74,17 @@ public class LineConverter
 
         if(string.contains("rotateAngleX = x;"))
         {
-            return "        modelRenderer.rotationPointX = x;";
+            return "        modelRenderer.pitch = x;";
         }
 
         if(string.contains("rotateAngleY = y;"))
         {
-            return "        modelRenderer.rotationPointY = y;";
+            return "        modelRenderer.yaw = y;";
         }
 
         if(string.contains("rotateAngleZ = z;"))
         {
-            return "        modelRenderer.rotationPointZ = z;";
+            return "        modelRenderer.roll = z;";
         }
 
         return string;
