@@ -5,13 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LineConverterTest
-{
+class LineConverterTest {
     private final LineConverter CONVERTER = new LineConverter();
 
     @Test
-    void testLineConversions()
-    {
+    void testLineConversions() {
         assertEquals("import net.minecraft.client.model.Cuboid;", CONVERTER.convertLine("import net.minecraft.client.model.ModelBox;"));
         assertEquals("import net.minecraft.client.render.entity.model.EntityModel;", CONVERTER.convertLine("import net.minecraft.client.model.ModelBase;"));
         assertEquals("", CONVERTER.convertLine("import org.lwjgl.opengl.GL11;"));

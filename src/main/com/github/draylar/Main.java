@@ -4,38 +4,35 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main
-{
+public class Main {
+
     private static final Scanner INPUT = new Scanner(System.in);
     private static final LineConverter CONVERTER = new LineConverter();
     private static final FileReader READER = new FileReader();
     private static final ClassLogger LOGGER = new ClassLogger();
-    private static final IOPrompter PROMPTER = new IOPrompter();
 
-    public static void main(String[] args)
-    {   
-        
-        //pass file path as argument to .jar
+    public static void main(String[] args) {
         File file;
+
         if (args.length > 0) {
             file = new File(args[0]);
         } else {
-            // prompt for file location
-            PROMPTER.prompt(IOPrompter.ProgramStage.FILE);
+            System.out.println("Enter the path of the file you want to convert: ");
             file = new File(INPUT.nextLine());
         }
+
         // log output
-        PROMPTER.prompt(IOPrompter.ProgramStage.OUTPUT);
+        System.out.println("Formatted class: ");
         LOGGER.log(getFormattedLines(file));
     }
 
     /**
-     * Takes a file and returns it as a list of formatted lines.
-     * @param file file location
-     * @return list of formatted lines
+     * Converts the contents read from a {@link File} to formatted and split lines.
+     *
+     * @param file  file location to read data from
+     * @return   a list of formatted lines parsed from the data
      */
-    private static ArrayList<String> getFormattedLines(File file)
-    {
+    private static ArrayList<String> getFormattedLines(File file) {
         ArrayList<String> lines = new ArrayList<>(READER.getLines(file));
         ArrayList<String> formattedLines = new ArrayList<>();
 
