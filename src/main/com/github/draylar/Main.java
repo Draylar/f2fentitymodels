@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final Scanner INPUT = new Scanner(System.in);
-    private static final LineConverter CONVERTER = new LineConverter();
-    private static final FileReader READER = new FileReader();
-    private static final ClassLogger LOGGER = new ClassLogger();
+    private static final Scanner INPUT_SCANNER = new Scanner(System.in);
+    private static final LineConverter LINE_CONVERTER = new LineConverter();
+    private static final FileReader FILE_READER = new FileReader();
+    private static final ArrayLogger LOGGER = new ArrayLogger();
 
     public static void main(String[] args) {
         File file;
@@ -18,7 +18,7 @@ public class Main {
             file = new File(args[0]);
         } else {
             System.out.println("Enter the path of the file you want to convert: ");
-            file = new File(INPUT.nextLine());
+            file = new File(INPUT_SCANNER.nextLine());
         }
 
         // log output
@@ -33,10 +33,11 @@ public class Main {
      * @return   a list of formatted lines parsed from the data
      */
     private static ArrayList<String> getFormattedLines(File file) {
-        ArrayList<String> lines = new ArrayList<>(READER.getLines(file));
-        ArrayList<String> formattedLines = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<>(FILE_READER.getLines(file));
 
-        lines.forEach(line -> formattedLines.add(CONVERTER.convertLine(line)));
+        ArrayList<String> formattedLines = new ArrayList<>();
+        lines.forEach(line -> formattedLines.add(LINE_CONVERTER.convertLine(line)));
+
         return formattedLines;
     }
 }

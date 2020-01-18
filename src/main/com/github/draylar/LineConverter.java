@@ -17,7 +17,7 @@ public class LineConverter {
 
         if (string.contains("import")) {
             if (string.contains("net.minecraft.client.model.ModelBox")) {
-                return "import net.minecraft.client.model.Cuboid;";
+                return "import net.minecraft.client.model.ModelPart;";
             }
 
             if (string.contains("net.minecraft.client.model.ModelBase")) {
@@ -27,8 +27,12 @@ public class LineConverter {
             return "";
         }
 
+        if(string.contains("public void setRotationAngle")) {
+            return "\n\tpublic void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {";
+        }
+
         if (string.contains("ModelRenderer")) {
-            return string.replace("ModelRenderer", "Cuboid");
+            return string.replace("ModelRenderer", "ModelPart");
         }
 
         if (string.contains("ModelBase")) {
@@ -55,7 +59,11 @@ public class LineConverter {
             int z1 = Integer.parseInt(split[9]);
             float unknown = Float.parseFloat(split[10]);
 
-            return name + ".addBox(" + "\"" + name + "\"" + ", " + +x + "F" + ", " + y + "F" + ", " + z + "F" + ", " + x1 + ", " + y1 + ", " + z1 + ", " + unknown + "F" + ", " + texX + ", " + texY + ");";
+            return name + ".addCuboid(" + "\"" + name.replace("	", "") + "\"" + ", " + +x + "F" + ", " + y + "F" + ", " + z + "F" + ", " + x1 + ", " + y1 + ", " + z1 + ", " + unknown + "F" + ", " + texX + ", " + texY + ");";
+        }
+
+        if(string.contains("setRotationPoint")) {
+            return string.replace("setRotationPoint", "setPivot");
         }
 
         if (string.contains("public void render")) {

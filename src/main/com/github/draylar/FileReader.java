@@ -8,12 +8,14 @@ import java.util.Collections;
 import java.util.List;
 
 class FileReader {
+
     /**
-     * Retrieves the lines in a file and returns it as a List<String>.
-     * Returns an empty list if no lines are found.
+     * Returns the contents of the given {@link File} as a {@link List}.
+     * <p>
+     * If the File isn't found or can't be read, an {@link IOException} is thrown and an empty list is returned.
      *
-     * @param file location of file to be read
-     * @return a list of lines found in the file
+     * @param file  a file with data to convert to a list
+     * @return  file split into a list.
      */
     List<String> getLines(File file) {
         try {
@@ -22,6 +24,6 @@ class FileReader {
             e.printStackTrace();
         }
 
-        return Collections.singletonList("");
+        return Collections.emptyList();
     }
 }
